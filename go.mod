@@ -1,3 +1,3 @@
-module github.com/zomasec/logz
+module github.com/cyinnove/logify
 
 go 1.21.7

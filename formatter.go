@@ -34,3 +34,7 @@ func (f *Formatter) SetMessage(msg string, args ...interface{}) {
 	f.Message = fmt.Sprintf(msg, args...)
 	f.Args = nil
 }
+
+func (f *Formatter) SetColor(color Color) {
+	f.Color = Colors[color]
+}

@@ -37,10 +37,10 @@ func Msg() Logger {
 			Formatter:      Formatter{},
 			ColorEnabled:   true, // Colors are enabled by default
 			DebugEnabled:   true, // All log levels are visible by default
-			InfoEnabled:    true,
-			WarningEnabled: true,
-			ErrorEnabled:   true,
-			FatalEnabled:   true,
+			InfoEnabled:    true, // All log levels are visible by default
+			WarningEnabled: true, // All log levels are visible by default
+			ErrorEnabled:   true, // All log levels are visible by default
+			FatalEnabled:   true, // All log levels are visible by default
 		}
 	})
 	return instance
@@ -98,4 +98,32 @@ func (l *LoggerOptions) Fatal(msg string, args ...interface{}) {
 	l.colorize(Fatal.String(), Colors[Orange])
 	l.Formatter.SetMessage(msg, args...)
 	l.Formatter.Log()
+}
+
+type FormatterOption func(*Formatter)
+
+func WithColor(color Color) FormatterOption {
+	return func(f *Formatter) {
+		f.Color = Colors[color]
+	}
+}
+
+func WithHolder(holder string) FormatterOption {
+	return func(f *Formatter) {
+		f.LogHolder = holder
+	}
+}
+
+func WithMessage(msg string, args ...interface{}) FormatterOption {
+	return func(f *Formatter) {
+		f.Message = fmt.Sprintf(msg, args...)
+	}
+}
+
+func CustomLogger() *Formatter {
+	return &Formatter{
+		LogHolder: "",
+		Message:   "",
+		Color:    "",
+	}
 }
