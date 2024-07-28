@@ -1,28 +1,28 @@
 ## Overview
 
-This tool provides a custom logging solution for Go applications. It utilizes the `logify` package to log messages with various levels of severity and custom formatting. The logger supports different log levels such as INFO, TEST, DEBUG, FATAL, ERROR, and WARN. Additionally, it allows the creation of custom log messages with specified colors and formats. The logger follows the Singleton pattern to ensure that the same logger instance is used throughout the entire application.
+This tool provides a custom logging solution for Go applications using the `logify` package. It supports various log levels such as INFO, TEST, DEBUG, FATAL, ERROR, and WARN, and allows for custom log messages with specified colors and formats. The logger follows the Singleton pattern to ensure a consistent logging instance throughout the application.
 
-This logging package can be integrated into various types of applications, including CLI tools, security tools, web servers, and more. Its flexibility and customizability make it suitable for any application that requires robust logging capabilities.
+This logging package is versatile, suitable for CLI tools, security tools, web servers, and more, offering robust and customizable logging capabilities.
 
 ## Features
 
-- **Log Levels**: Supports multiple log levels including INFO, TEST, DEBUG, FATAL, ERROR, and WARN.
-- **Custom Logger**: Allows custom log messages with specified colors and formats.
-- **Singleton Pattern**: Ensures a single logger instance is used throughout the application.
+- **Log Levels**: INFO, TEST, DEBUG, FATAL, ERROR, WARN.
+- **Custom Logger**: Custom log messages with specified colors and formats.
+- **Singleton Pattern**: Single logger instance throughout the application.
 
 ## Installation
 
-To use this tool, you need to install the `logify` package. You can do this using `go get`:
+Install the `logify` package using `go get`:
 
 ```sh
 go get github.com/cyinnove/logify@latest
 ```
 
-## How to use?
+## How to Use
 
 ### Importing the Package
 
-First, import the necessary package in your Go application:
+Import the package in your Go application:
 
 ```go
 import (
@@ -32,7 +32,7 @@ import (
 
 ### Basic Logging
 
-Here's an example of how to use the basic logging functionality:
+Example of basic logging functionality:
 
 ```go
 package main
@@ -49,7 +49,7 @@ func main() {
 
 ### Custom Logging
 
-You can create custom log messages with specified colors and formats:
+Creating custom log messages with specified colors and formats:
 
 ```go
 package main
@@ -60,10 +60,8 @@ import (
 
 func main() {
     path := "examples/example.go"
-    // Default logger with warning level
     log.Msg().Warn(path)
 
-    // Custom logger example
     CustomLogger(log.Red, "Custom", "This is a custom log message with color %s", "Red")
 }
 
@@ -75,14 +73,11 @@ func CustomLogger(color log.Color, holder, message string, args ...interface{}) 
     formatter.Log()
 }
 ```
-## Logging Example
-
-![Logging Example](/static/logs.png)
-
 
 ## Log Levels
 
 The logger supports the following log levels:
+
 - **INFO**
 - **TEST**
 - **DEBUG**
@@ -90,17 +85,20 @@ The logger supports the following log levels:
 - **ERROR**
 - **WARN**
 
-These levels can be used to categorize and filter log messages based on severity.
+These levels help categorize and filter log messages based on severity.
+
+## Logging Example
+
+![Logging Example](/static/logs.png)
 
 ## Singleton Pattern
 
-The logger uses the Singleton pattern to ensure that a single instance of the logger is used across the entire application. This helps maintain consistency and avoids potential issues with multiple logger instances.
+The logger ensures a single instance across the entire application, maintaining consistency and avoiding issues with multiple instances.
 
 ## Contributing
 
-Contributions are welcome! Please feel free to submit a pull request or open an issue if you have any suggestions or bug reports.
+Contributions are welcome! Submit a pull request or open an issue for suggestions or bug reports.
 
 ## License
 
 This project is licensed under the MIT License. See the LICENSE file for details.
-
