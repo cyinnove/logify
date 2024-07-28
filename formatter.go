@@ -10,7 +10,9 @@ type Formatter struct {
 	Color     string // Holds the color for the holder
 }
 
-// Format formats the log message.
+// Format formats the log message using the specified color and log holder.
+// If no color is specified, it defaults to no color.
+// It returns the formatted log message as a string.
 func (f *Formatter) Format() string {
 	color := f.Color
 	if color == "" {
@@ -19,7 +21,7 @@ func (f *Formatter) Format() string {
 	return fmt.Sprintf("[%s%s%s] %s", color, f.LogHolder, Colors[Reset], fmt.Sprintf(f.Message, f.Args...))
 }
 
-// Log prints the formatted log message.
+// Log prints the formatted log message to the console.
 func (f *Formatter) Log() {
 	fmt.Println(f.Format())
 }
@@ -35,6 +37,8 @@ func (f *Formatter) SetMessage(msg string, args ...interface{}) {
 	f.Args = nil
 }
 
+// SetColor sets the color of the formatter.
+// It takes a Color parameter and assigns the corresponding color value from the Colors map to the Formatter's Color field.
 func (f *Formatter) SetColor(color Color) {
 	f.Color = Colors[color]
 }
