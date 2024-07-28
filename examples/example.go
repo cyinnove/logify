@@ -8,7 +8,7 @@ func main() {
 	//host := "https://example.com"
 	path := "docs/example.go"
 
-	log.Msg().Warn(path)
+	log.Msg().Test(path)
 
 	CustomLogger(log.Red, "Custom", "This is a custom log message with color %s", "Red")
 

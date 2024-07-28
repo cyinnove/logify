@@ -9,6 +9,7 @@ import (
 type Logger interface {
 	Info(msg string, args ...interface{})
 	Debug(msg string, args ...interface{})
+	Test(msg string, args ...interface{})
 	Warn(msg string, args ...interface{})
 	Error(msg string, args ...interface{})
 	Fatal(msg string, args ...interface{})
@@ -23,6 +24,7 @@ type LoggerOptions struct {
 	WarningEnabled bool // Controls warning log visibility
 	ErrorEnabled   bool // Controls error log visibility
 	FatalEnabled   bool // Controls fatal log visibility
+	TestEnabled    bool // Controls test log visibility
 }
 
 var (
@@ -45,6 +47,7 @@ func Msg() Logger {
 			WarningEnabled: true, // All log levels are visible by default
 			ErrorEnabled:   true, // All log levels are visible by default
 			FatalEnabled:   true, // All log levels are visible by default
+			TestEnabled:    true, // All log levels are visible by default
 		}
 	})
 	return instance
@@ -105,6 +108,15 @@ func (l *LoggerOptions) Fatal(msg string, args ...interface{}) {
 		return
 	}
 	l.colorize(Fatal.String(), Colors[Orange])
+	l.Formatter.SetMessage(msg, args...)
+	l.Formatter.Log()
+}
+
+func (l *LoggerOptions) Test(msg string, args ...interface{}) {
+	if !l.DebugEnabled {
+		return
+	}
+	l.colorize(Test.String(), Colors[Green])
 	l.Formatter.SetMessage(msg, args...)
 	l.Formatter.Log()
 }
