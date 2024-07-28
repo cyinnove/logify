@@ -75,6 +75,10 @@ func CustomLogger(color log.Color, holder, message string, args ...interface{}) 
     formatter.Log()
 }
 ```
+## Logging Example
+
+![Logging Example](/static/logs.png)
+
 
 ## Log Levels
 
