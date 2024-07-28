@@ -15,7 +15,7 @@ This logging package can be integrated into various types of applications, inclu
 To use this tool, you need to install the `logify` package. You can do this using `go get`:
 
 ```sh
-go get github.com/cyinnove/logify
+go get github.com/cyinnove/logify@latest
 ```
 
 ## Usage
