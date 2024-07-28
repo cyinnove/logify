@@ -1,4 +1,4 @@
-package logger
+package logify
 
 
 type Color int8 
