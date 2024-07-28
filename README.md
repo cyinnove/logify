@@ -78,7 +78,7 @@ func CustomLogger(color log.Color, holder, message string, args ...interface{}) 
 ## Log Levels
 
 The logger supports the following log levels:
-- - **INFO**
+- **INFO**
 - **TEST**
 - **DEBUG**
 - **FATAL**
