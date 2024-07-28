@@ -1,6 +1,8 @@
 ## Overview
 
-This tool provides a custom logging solution for Go applications. It utilizes the `logify` package to log messages with various levels of severity and custom formatting. The logger supports different log levels such as TEST, DEBUG, FATAL, ERROR, and WARN. Additionally, it allows the creation of custom log messages with specified colors and formats. The logger follows the Singleton pattern to ensure that the same logger instance is used throughout the entire application.
+This tool provides a custom logging solution for Go applications. It utilizes the `logify` package to log messages with various levels of severity and custom formatting. The logger supports different log levels such as INFO, TEST, DEBUG, FATAL, ERROR, and WARN. Additionally, it allows the creation of custom log messages with specified colors and formats. The logger follows the Singleton pattern to ensure that the same logger instance is used throughout the entire application.
+
+This logging package can be integrated into various types of applications, including CLI tools, security tools, web servers, and more. Its flexibility and customizability make it suitable for any application that requires robust logging capabilities.
 
 ## Features
 
@@ -57,12 +59,11 @@ import (
 )
 
 func main() {
-
     path := "examples/example.go"
-    // here the default logger with level warnning 
+    // Default logger with warning level
     log.Msg().Warn(path)
 
-    // here running with custom logger you can make as you need like below.
+    // Custom logger example
     CustomLogger(log.Red, "Custom", "This is a custom log message with color %s", "Red")
 }
 
@@ -95,15 +96,7 @@ The logger uses the Singleton pattern to ensure that a single instance of the lo
 
 Contributions are welcome! Please feel free to submit a pull request or open an issue if you have any suggestions or bug reports.
 
-## Contributors
-
-
-
-
 ## License
 
 This project is licensed under the MIT License. See the LICENSE file for details.
 
-
-
-This README file provides a basic overview of the logging tool, its features, installation, and usage. It also includes information on log levels, the Singleton pattern, and contributing guidelines.
