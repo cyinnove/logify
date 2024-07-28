@@ -4,8 +4,8 @@ package logger
 type Color int8 
 
 const (
-	Red Color = iota
-	Blue
+	Red Color = iota 
+	Blue 
 	Green
 	Yellow
 	Purple
@@ -15,8 +15,9 @@ const (
 	Reset
 )
 
+// Colors is a map that associates each Color with its corresponding ANSI escape code.
 var Colors = map[Color]string{
-	Red:    "\033[0;31m",
+	Red:    "\033[0;31m", 
 	Blue:   "\033[0;34m",
 	Green:  "\033[0;32m",
 	Yellow: "\033[0;33m",

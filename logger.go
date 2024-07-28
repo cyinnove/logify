@@ -31,6 +31,10 @@ var (
 )
 
 // GetLogger returns the singleton instance of LoggerOptions.
+// Msg returns an instance of the Logger.
+// The Logger is a singleton object that provides logging functionality.
+// It initializes the LoggerOptions with default values if it hasn't been initialized before.
+// The LoggerOptions controls various logging options such as formatter, color enablement, and log level visibility.
 func Msg() Logger {
 	once.Do(func() {
 		instance = &LoggerOptions{
@@ -54,6 +58,7 @@ func (l *LoggerOptions) colorize(holder, color string) {
 	}
 }
 
+// Info logs an info message with the specified message and arguments.
 func (l *LoggerOptions) Info(msg string, args ...interface{}) {
 	if !l.InfoEnabled {
 		return
@@ -63,6 +68,7 @@ func (l *LoggerOptions) Info(msg string, args ...interface{}) {
 	l.Formatter.Log()
 }
 
+// Debug logs a debug message with the specified message and arguments.
 func (l *LoggerOptions) Debug(msg string, args ...interface{}) {
 	if !l.DebugEnabled {
 		return
@@ -73,6 +79,7 @@ func (l *LoggerOptions) Debug(msg string, args ...interface{}) {
 	l.Formatter.Log()
 }
 
+// Warn logs a warning message with the specified message and arguments.
 func (l *LoggerOptions) Warn(msg string, args ...interface{}) {
 	if !l.WarningEnabled {
 		return
@@ -82,6 +89,7 @@ func (l *LoggerOptions) Warn(msg string, args ...interface{}) {
 	l.Formatter.Log()
 }
 
+// Error logs an error message with the specified message and arguments.
 func (l *LoggerOptions) Error(msg string, args ...interface{}) {
 	if !l.ErrorEnabled {
 		return
@@ -91,6 +99,7 @@ func (l *LoggerOptions) Error(msg string, args ...interface{}) {
 	l.Formatter.Log()
 }
 
+// Fatal logs a fatal message with the specified message and arguments.
 func (l *LoggerOptions) Fatal(msg string, args ...interface{}) {
 	if !l.FatalEnabled {
 		return
@@ -100,30 +109,4 @@ func (l *LoggerOptions) Fatal(msg string, args ...interface{}) {
 	l.Formatter.Log()
 }
 
-type FormatterOption func(*Formatter)
 
-func WithColor(color Color) FormatterOption {
-	return func(f *Formatter) {
-		f.Color = Colors[color]
-	}
-}
-
-func WithHolder(holder string) FormatterOption {
-	return func(f *Formatter) {
-		f.LogHolder = holder
-	}
-}
-
-func WithMessage(msg string, args ...interface{}) FormatterOption {
-	return func(f *Formatter) {
-		f.Message = fmt.Sprintf(msg, args...)
-	}
-}
-
-func CustomLogger() *Formatter {
-	return &Formatter{
-		LogHolder: "",
-		Message:   "",
-		Color:    "",
-	}
-}
