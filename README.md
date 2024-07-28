@@ -7,8 +7,8 @@ This logging package can be integrated into various types of applications, inclu
 ## Features
 
 - **Log Levels**: Supports multiple log levels including INFO, TEST, DEBUG, FATAL, ERROR, and WARN.
-- **Custom Logger**: Allows for custom log messages with specified colors and formats.
-- **Singleton Pattern**: Ensures a single instance of the logger is used throughout the application.
+- **Custom Logger**: Allows custom log messages with specified colors and formats.
+- **Singleton Pattern**: Ensures a single logger instance is used throughout the application.
 
 ## Installation
 
@@ -18,7 +18,7 @@ To use this tool, you need to install the `logify` package. You can do this usin
 go get github.com/cyinnove/logify
 ```
 
-## Usage
+## How to use?
 
 ### Importing the Package
 
@@ -90,7 +90,7 @@ The logger supports the following log levels:
 - **ERROR**
 - **WARN**
 
-These levels can be used to categorize and filter log messages based on their severity.
+These levels can be used to categorize and filter log messages based on severity.
 
 ## Singleton Pattern
 
