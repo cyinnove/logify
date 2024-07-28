@@ -47,7 +47,7 @@ func main() {
 }
 ```
 
-### Custom Logger
+### Custom Logging
 
 You can create custom log messages with specified colors and formats:
 
