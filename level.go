@@ -1,4 +1,4 @@
-package logger
+package logify
 
 
 type Level int8 
