@@ -1,5 +1,3 @@
-# README
-
 ## Overview
 
 This tool provides a custom logging solution for Go applications. It utilizes the `logify` package to log messages with various levels of severity and custom formatting. The logger supports different log levels such as TEST, DEBUG, FATAL, ERROR, and WARN. Additionally, it allows the creation of custom log messages with specified colors and formats. The logger follows the Singleton pattern to ensure that the same logger instance is used throughout the entire application.
@@ -99,7 +97,7 @@ Contributions are welcome! Please feel free to submit a pull request or open an 
 
 ## Contributors
 
-    
+
 
 
 ## License
