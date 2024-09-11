@@ -1,17 +1,25 @@
 package logify
 
-
-type Level int8 
+type Level int
 
 const (
-	Info Level = iota
-	Debug
-	Warn
-	Error
+	Null Level = iota
 	Fatal
-	Test
+	Silent
+	Label
+	Misc
+	Error
+	Info
+	Warning
+	Debug
+	Verbose
 )
 
-func (l Level) String() string {
-	return [...]string{"INF", "DBG", "WRN", "ERR", "FTL", "TST"}[l]
+var labels = map[Level]string{
+	Warning: "WRN",
+	Error:   "ERR",
+	Label:   "WRN",
+	Fatal:   "FTL",
+	Debug:   "DBG",
+	Info:    "INF",
 }

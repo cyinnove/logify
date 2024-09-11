@@ -1,104 +1,109 @@
-## Overview
+# logify
 
-This tool provides a custom logging solution for Go applications using the `logify` package. It supports various log levels such as INFO, TEST, DEBUG, FATAL, ERROR, and WARN, and allows for custom log messages with specified colors and formats. The logger follows the Singleton pattern to ensure a consistent logging instance throughout the application.
-
-This logging package is versatile, suitable for CLI tools, security tools, web servers, and more, offering robust and customizable logging capabilities.
+`logify` is a customizable logging solution for Go applications that supports various log levels and custom formatting. This package offers flexibility in logging messages with different levels of severity, colors, and formats. It uses a simple and efficient approach to logging by providing a single instance of the logger across the application.
 
 ## Features
 
-- **Log Levels**: INFO, TEST, DEBUG, FATAL, ERROR, WARN.
-- **Custom Logger**: Custom log messages with specified colors and formats.
-- **Singleton Pattern**: Single logger instance throughout the application.
+- **Log Levels**: Supports multiple log levels including `INFO`, `DEBUG`, `ERROR`, `FATAL`, `WARNING`, and `SILENT`.
+- **Custom Colors**: Allows custom log messages with specified colors.
+- **Singleton Pattern**: Ensures a single logger instance is used throughout the application for consistency.
 
 ## Installation
 
-Install the `logify` package using `go get`:
+To use `logify`, install the package via `go get`:
 
 ```sh
-go get github.com/cyinnove/logify@latest
+go get github.com/cyinnove/logify
 ```
 
-## How to Use
+## Usage
 
 ### Importing the Package
 
-Import the package in your Go application:
+Import the `logify` package in your Go application:
 
 ```go
 import (
-    log "github.com/cyinnove/logify"
+    "github.com/cyinnove/logify"
 )
 ```
 
 ### Basic Logging
 
-Example of basic logging functionality:
+Here's an example of basic logging:
 
 ```go
 package main
 
 import (
-    log "github.com/cyinnove/logify"
+    "github.com/cyinnove/logify"
 )
 
 func main() {
-    path := "docs/example.go"
-    log.Msg().Warn(path)
+    logify.UseColors = true
+    logify.MaxLevel = logify.Debug
+
+    logify.Infof("This is an %s message", "info")
+    logify.Warningf("This is a %s message", "warning")
+    logify.Errorf("This is an %s message", "error")
+    logify.Debugf("This is a %s message", "debug")
+    logify.Verbosef("This is a verbose message with a label", "LABEL")
+    logify.Silentf("This is a silent message")
+    
+    // Uncomment to test Fatalf
+    // logify.Fatalf("This is a fatal message, the program will exit")
 }
 ```
 
-### Custom Logging
+### Custom Logger
 
-Creating custom log messages with specified colors and formats:
+Create custom log messages with specified colors:
 
 ```go
 package main
 
 import (
-    log "github.com/cyinnove/logify"
+    "github.com/cyinnove/logify"
 )
 
 func main() {
-    path := "examples/example.go"
-    log.Msg().Warn(path)
+    logify.UseColors = true
+    logify.MaxLevel = logify.Debug
 
-    CustomLogger(log.Red, "Custom", "This is a custom log message with color %s", "Red")
+    // Default logging
+    logify.Warningf("Default warning message")
+
+    // Custom logging
+    CustomLogger(logify.Red, "CustomLabel", "This is a custom log message with color %s", "Red")
 }
 
-func CustomLogger(color log.Color, holder, message string, args ...interface{}) {
-    formatter := log.Formatter{}
-    formatter.SetHolder(holder)
-    formatter.SetMessage(message, args...)
-    formatter.SetColor(color)
-    formatter.Log()
+func CustomLogger(color logify.Color, label, format string, args ...interface{}) {
+    logify.UseColors = true
+    logify.MaxLevel = logify.Debug
+    logify.Printf(format, args...)
 }
 ```
 
 ## Log Levels
 
-The logger supports the following log levels:
+The logger supports the following levels:
 
-- **INFO**
-- **TEST**
-- **DEBUG**
-- **FATAL**
-- **ERROR**
-- **WARN**
-
-These levels help categorize and filter log messages based on severity.
-
-## Logging Example
-
-![Logging Example](/static/logs.png)
+- **INFO**: Informational messages.
+- **DEBUG**: Debugging messages.
+- **ERROR**: Error messages.
+- **FATAL**: Fatal errors that cause application exit.
+- **WARNING**: Warning messages.
+- **SILENT**: Messages with no label.
 
 ## Singleton Pattern
 
-The logger ensures a single instance across the entire application, maintaining consistency and avoiding issues with multiple instances.
+The logger follows the Singleton pattern to maintain a single instance throughout the application, ensuring consistent logging behavior and avoiding multiple instances.
 
 ## Contributing
 
-Contributions are welcome! Submit a pull request or open an issue for suggestions or bug reports.
+Contributions are welcome! To contribute, please submit a pull request or open an issue with your suggestions or bug reports.
 
 ## License
 
 This project is licensed under the MIT License. See the LICENSE file for details.
+
