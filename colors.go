@@ -1,29 +1,34 @@
 package logify
 
-
-type Color int8 
+import "fmt"
 
 const (
-	Red Color = iota 
-	Blue 
-	Green
-	Yellow
-	Purple
-	Cyan
-	Gray
-	Orange
-	Reset
+	Red     = "\033[31m"
+	Yellow  = "\033[33m"
+	Blue    = "\033[34m"
+	Magenta = "\033[35m"
+	Reset   = "\033[0m"
+	Bold    = "\033[1m"
 )
 
-// Colors is a map that associates each Color with its corresponding ANSI escape code.
-var Colors = map[Color]string{
-	Red:    "\033[0;31m", 
-	Blue:   "\033[0;34m",
-	Green:  "\033[0;32m",
-	Yellow: "\033[0;33m",
-	Purple: "\033[0;35m",
-	Cyan:   "\033[0;36m",
-	Gray:   "\033[0;37m",
-	Orange: "\033[0;91m",
-	Reset:   "\033[0m",
+// Colorize adds color based on the log level
+func Colorize(text string, level Level) string {
+	if !UseColors {
+		return text
+	}
+
+	switch level {
+	case Fatal:
+		return fmt.Sprintf("%s%s%s%s", Bold, Red, text, Reset)
+	case Error:
+		return fmt.Sprintf("%s%s%s", Red, text, Reset)
+	case Warning, Label:
+		return fmt.Sprintf("%s%s%s", Yellow, text, Reset)
+	case Debug:
+		return fmt.Sprintf("%s%s%s", Magenta, text, Reset)
+	case Info, Verbose:
+		return fmt.Sprintf("%s%s%s", Blue, text, Reset)
+	default:
+		return text
+	}
 }
