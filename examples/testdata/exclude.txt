@@ -1,0 +1,3 @@
+https://example.com/admin
+https://example.com/private
+https://test.com/internal
